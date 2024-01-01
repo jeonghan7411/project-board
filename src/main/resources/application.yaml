@@ -27,12 +27,14 @@ spring:
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100 # 100???? ??? select????? ???? ??
   sql.init.mode: always
-#  data.rest:
-#    detection-strategy: annotated
 #  thymeleaf3.decoupled-logic: true
   h2:
     console:
       enabled: false  #로컬에서 띄울려면 true 설정후 localhost:8080/h2-console
+  data:
+    rest:
+      base-path: /api
+      detection-strategy: annotated
 #  security:
 #    oauth2:
 #      client:
