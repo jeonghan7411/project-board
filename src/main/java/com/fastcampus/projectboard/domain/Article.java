@@ -23,9 +23,8 @@ import java.util.Set;
         @Index(columnList = "createdAt"),
         @Index(columnList = "createdBy"),
 })
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Article {
+public class Article extends AuditingFields{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // autoIncrement를 위해
@@ -47,10 +46,7 @@ public class Article {
     @OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
     private final Set<ArticleComment> articleComments = new LinkedHashSet<>();
 
-    @CreatedDate @Column(nullable = false) private LocalDateTime createdAt; // 생성일시
-    @CreatedBy @Column(nullable = false , length = 100) private String createdBy; // 생성자
-    @LastModifiedDate @Column(nullable = false) private LocalDateTime modifiedAt; // 수정일시
-    @LastModifiedBy @Column(nullable = false , length = 100) private String modifiedBy; // 수정자
+
 
     //jpa entity 는 Hibernate 구현체를 사용하는 경우 기본 생성자를 가지고 있어야함
     //최소한 protected 로 열어 줘야함 private는 오류 발생
